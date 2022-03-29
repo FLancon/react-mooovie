@@ -6,7 +6,7 @@ import Header from "../components/Header";
 const UserList = () => {
 	const [listData, setListData] = useState([]);
 	const [sortOldNew, setSortOldNew] = useState(null);
-	const moviesDataReversed = movieData.reverse();
+	const moviesDataReversed = listData.reverse();
 
 	useEffect(() => {
 		let moviesId = window.localStorage.movies
@@ -16,7 +16,7 @@ const UserList = () => {
 		for (let i = 0; i < moviesId.length; i++) {
 			axios
 				.get(
-					`https://api.themoviedb.org/3/movie/${moviesId[i]}?api_key=298de76ca90b3ef85d82b83110cf69d6&language=fr-FR`
+					`https://api.themoviedb.org/3/movie/${moviesId[i]}?api_key=${[process.env.REACT_APP_API_KEY]}&language=fr-FR`
 				)
 				.then((res) =>
 					setListData((listData) => [...listData, res.data])
